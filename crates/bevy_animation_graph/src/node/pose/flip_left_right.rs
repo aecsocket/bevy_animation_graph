@@ -9,18 +9,11 @@ use crate::prelude::{EditProxy, PassContext, SpecContext};
 use crate::utils::asset::GetTypedExt;
 use crate::utils::unwrap::UnwrapVal;
 use bevy::prelude::*;
-use serde::{Deserialize, Serialize};
 
-<<<<<<< HEAD:crates/bevy_animation_graph/src/nodes/flip_lr_node.rs
-#[derive(Reflect, Clone, Debug, Serialize, Deserialize)]
-#[reflect(Default, NodeLike, Serialize, Deserialize)]
-pub struct FlipLRNode {
-=======
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
 #[type_path = "bevy_animation_graph::node::pose"]
 pub struct FlipLeftRight {
->>>>>>> fdfc409 (Rename nodes):crates/bevy_animation_graph/src/node/pose/flip_left_right.rs
     pub config: FlipConfig,
 }
 
@@ -77,12 +70,12 @@ impl NodeLike for FlipLeftRight {
 }
 
 #[derive(Clone, Reflect)]
-pub struct FlipLRProxy {
+pub struct FlipLeftRightProxy {
     pub config: FlipConfigProxy,
 }
 
-impl EditProxy for FlipLRNode {
-    type Proxy = FlipLRProxy;
+impl EditProxy for FlipLeftRight {
+    type Proxy = FlipLeftRightProxy;
 
     fn update_from_proxy(proxy: &Self::Proxy) -> Self {
         Self {
@@ -109,9 +102,9 @@ mod test {
     #[test]
     fn test_serialize() {
         let mut registry = TypeRegistry::new();
-        registry.register::<FlipLRNode>();
+        registry.register::<FlipLeftRight>();
 
-        let node = super::FlipLRNode::default();
+        let node = FlipLeftRight::default();
         let serializer = AnimationNodeSerializer {
             type_registry: &registry,
             name: "Test".to_string(),
