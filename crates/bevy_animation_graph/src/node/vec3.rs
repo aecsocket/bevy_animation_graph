@@ -37,7 +37,6 @@ impl_for_1!(Abs, Vec3, DataSpec::Vec3, "|_| Abs Vec3", Vec3::abs);
 impl_lerp!(Lerp, Vec3, DataSpec::Vec3, "Lerp Vec3", Vec3::lerp);
 impl_clamp!(Clamp, Vec3, DataSpec::Vec3, "Clamp Vec3", Vec3::clamp);
 
-impl_for_1!(Length, Vec3, DataSpec::Vec3, "Length Vec3", Vec3::length);
 impl_for_1!(
     Normalize,
     Vec3,
@@ -52,10 +51,10 @@ impl_for_2!(Dot, Vec3, DataSpec::Vec3, "⋅ Dot Vec3", Vec3::dot);
 pub struct FromXyz;
 
 impl FromXyz {
-    pub const X: &'static str = "x";
-    pub const Y: &'static str = "y";
-    pub const Z: &'static str = "z";
-    pub const VEC: &'static str = "vec";
+    pub const X: &str = "x";
+    pub const Y: &str = "y";
+    pub const Z: &str = "z";
+    pub const VEC: &str = "vec";
 }
 
 impl NodeLike for FromXyz {
@@ -90,10 +89,10 @@ impl NodeLike for FromXyz {
 pub struct IntoXyz;
 
 impl IntoXyz {
-    pub const VEC: &'static str = "in";
-    pub const X: &'static str = "x";
-    pub const Y: &'static str = "y";
-    pub const Z: &'static str = "z";
+    pub const VEC: &str = "in";
+    pub const X: &str = "x";
+    pub const Y: &str = "y";
+    pub const Z: &str = "z";
 }
 
 impl NodeLike for IntoXyz {
@@ -120,5 +119,34 @@ impl NodeLike for IntoXyz {
             (Self::Z.into(), DataSpec::F32),
         ]
         .into()
+    }
+}
+
+#[derive(Reflect, Clone, Debug, Default)]
+#[reflect(Default, NodeLike)]
+pub struct Length;
+
+impl Length {
+    pub const IN: &str = "in";
+    pub const OUT: &str = "out";
+}
+
+impl NodeLike for Length {
+    fn display_name(&self) -> String {
+        "Length Vec3".into()
+    }
+
+    fn update(&self, mut ctx: PassContext) -> Result<(), GraphError> {
+        let v = Vec3::try_from(ctx.data_back(Self::IN)?).unwrap();
+        ctx.set_data_fwd(Self::OUT, v.length());
+        Ok(())
+    }
+
+    fn data_input_spec(&self, _ctx: SpecContext) -> PinMap<DataSpec> {
+        [(Self::IN.into(), DataSpec::Vec3)].into()
+    }
+
+    fn data_output_spec(&self, _ctx: SpecContext) -> PinMap<DataSpec> {
+        [(Self::OUT.into(), DataSpec::F32)].into()
     }
 }
