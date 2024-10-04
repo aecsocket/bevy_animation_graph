@@ -138,7 +138,7 @@ macro_rules! impl_lerp {
                 [
                     (Self::FROM.into(), $value_spec),
                     (Self::TO.into(), $value_spec),
-                    (Self::FACTOR.into(), $value_spec),
+                    (Self::FACTOR.into(), DataSpec::F32),
                 ]
                 .into()
             }
