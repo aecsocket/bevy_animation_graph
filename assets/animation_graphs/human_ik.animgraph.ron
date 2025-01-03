@@ -16,13 +16,13 @@
         ),
     ],
     edges_inverted: {
-        NodeData("arm ik", "Target Path"): InputData("right hand path"),
+        NodeData("arm ik", "target_path"): InputData("right hand path"),
         NodeData("base anim", "Target Speed"): InputData("Target Speed"),
         OutputTime: NodeTime("arm ik"),
         NodeData("base anim", "Target Direction"): InputData("Target Direction"),
         OutputData("pose"): NodeData("arm ik", "pose"),
         NodeData("arm ik", "pose"): NodeData("base anim", "pose"),
-        NodeData("arm ik", "Target Position"): InputData("target hand pos"),
+        NodeData("arm ik", "target_position"): InputData("target hand pos"),
         NodeTime("arm ik", "time"): NodeTime("base anim"),
     },
     default_parameters: {

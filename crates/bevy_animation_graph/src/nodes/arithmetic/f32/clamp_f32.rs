@@ -10,10 +10,10 @@ use bevy::prelude::*;
 pub struct ClampF32;
 
 impl ClampF32 {
-    pub const INPUT: &'static str = "F32 In";
+    pub const INPUT: &'static str = "f32_in";
     pub const CLAMP_MIN: &'static str = "Min";
     pub const CLAMP_MAX: &'static str = "Max";
-    pub const OUTPUT: &'static str = "F32 Out";
+    pub const OUTPUT: &'static str = "f32_out";
 
     pub fn new() -> Self {
         Self
