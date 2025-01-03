@@ -2,143 +2,161 @@
     nodes: [
         (
             name: "speed",
-            ty: "bevy_animation_graph::nodes::speed_node::SpeedNode",
-            inner: (),
+            inner: {
+                "bevy_animation_graph::nodes::speed_node::SpeedNode": (),
+            },
         ),
         (
             name: "walk clip 1",
-            ty: "bevy_animation_graph::nodes::clip_node::ClipNode",
-            inner: (
-                clip: "animations/human_walk.anim.ron",
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::clip_node::ClipNode": (
+                    clip: "animations/human_walk.anim.ron",
+                ),
+            },
         ),
         (
             name: "Rotate",
-            ty: "bevy_animation_graph::nodes::rotation_node::RotationNode",
-            inner: (
-                application_mode: Compose,
-                rotation_space: Character,
-                chain_decay: Linear,
-                chain_length: 1,
-                base_weight: 1.0,
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::rotation_node::RotationNode":(
+                    application_mode: Compose,
+                    rotation_space: Character,
+                    chain_decay: Linear,
+                    chain_length: 1,
+                    base_weight: 1.0,
+                ),
+            },
         ),
         (
             name: "flip walk",
-            ty: "bevy_animation_graph::nodes::flip_lr_node::FlipLRNode",
-            inner: (
-                config: (
-                    name_mapper: Pattern((
-                        key_1: "L",
-                        key_2: "R",
-                        pattern_before: "^.*",
-                        pattern_after: "$",
-                    )),
+            inner: {
+                "bevy_animation_graph::nodes::flip_lr_node::FlipLRNode": (
+                    config: (
+                        name_mapper: Pattern((
+                            key_1: "L",
+                            key_2: "R",
+                            pattern_before: "^.*",
+                            pattern_after: "$",
+                        )),
+                    ),
                 ),
-            ),
+            },
         ),
         (
             name: "wave additive",
-            ty: "bevy_animation_graph::nodes::blend_node::BlendNode",
-            inner: (
-                mode: Additive,
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::blend_node::BlendNode": (
+                    mode: Additive,
+                ),
+            },
         ),
         (
             name: "flip run",
-            ty: "bevy_animation_graph::nodes::flip_lr_node::FlipLRNode",
-            inner: (
-                config: (
-                    name_mapper: Pattern((
-                        key_1: "L",
-                        key_2: "R",
-                        pattern_before: "^.*",
-                        pattern_after: "$",
-                    )),
+            inner: {
+                "bevy_animation_graph::nodes::flip_lr_node::FlipLRNode": (
+                    config: (
+                        name_mapper: Pattern((
+                            key_1: "L",
+                            key_2: "R",
+                            pattern_before: "^.*",
+                            pattern_after: "$",
+                        )),
+                    ),
                 ),
-            ),
+            },
         ),
         (
             name: "run clip 2",
-            ty: "bevy_animation_graph::nodes::clip_node::ClipNode",
-            inner: (
-                clip: "animations/human_run.anim.ron",
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::clip_node::ClipNode": (
+                    clip: "animations/human_run.anim.ron",
+                ),
+            },
         ),
         (
             name: "blend",
-            ty: "bevy_animation_graph::nodes::blend_node::BlendNode",
-            inner: (
-                mode: LinearInterpolate,
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::blend_node::BlendNode": (
+                    mode: LinearInterpolate,
+                ),
+            },
         ),
         (
             name: "loop",
-            ty: "bevy_animation_graph::nodes::loop_node::LoopNode",
-            inner: (
-                interpolation_period: 0.5,
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::loop_node::LoopNode": (
+                    interpolation_period: 0.5,
+                ),
+            },
         ),
         (
             name: "stand",
-            ty: "bevy_animation_graph::nodes::clip_node::ClipNode",
-            inner: (
-                clip: "animations/human_stand.anim.ron",
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::clip_node::ClipNode": (
+                    clip: "animations/human_stand.anim.ron",
+                ),
+            },
         ),
         (
             name: "chain walk",
-            ty: "bevy_animation_graph::nodes::chain_node::ChainNode",
-            inner: (
-                interpolation_period: 0.5,
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::chain_node::ChainNode": (
+                    interpolation_period: 0.5,
+                ),
+            },
         ),
         (
             name: "Parameters",
-            ty: "bevy_animation_graph::nodes::graph_node::GraphNode",
-            inner: (
-                graph: "animation_graphs/velocity_to_params.animgraph.ron",
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::graph_node::GraphNode": (
+                    graph: "animation_graphs/velocity_to_params.animgraph.ron",
+                ),
+            },
         ),
         (
             name: "chain run",
-            ty: "bevy_animation_graph::nodes::chain_node::ChainNode",
-            inner: (
-                interpolation_period: 0.5,
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::chain_node::ChainNode": (
+                    interpolation_period: 0.5,
+                ),
+            },
         ),
         (
             name: "run clip 1",
-            ty: "bevy_animation_graph::nodes::clip_node::ClipNode",
-            inner: (
-                clip: "animations/human_run.anim.ron",
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::clip_node::ClipNode": (
+                    clip: "animations/human_run.anim.ron",
+                ),
+            },
         ),
         (
             name: "wave diff",
-            ty: "bevy_animation_graph::nodes::blend_node::BlendNode",
-            inner: (
-                mode: Difference,
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::blend_node::BlendNode": (
+                    mode: Difference,
+                ),
+            },
         ),
         (
             name: "wave",
-            ty: "bevy_animation_graph::nodes::clip_node::ClipNode",
-            inner: (
-                clip: "animations/human_wave.anim.ron",
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::clip_node::ClipNode": (
+                    clip: "animations/human_wave.anim.ron",
+                ),
+            },
         ),
         (
             name: "walk clip 2",
-            ty: "bevy_animation_graph::nodes::clip_node::ClipNode",
-            inner: (
-                clip: "animations/human_walk.anim.ron",
-            ),
+            inner: {
+                "bevy_animation_graph::nodes::clip_node::ClipNode": (
+                    clip: "animations/human_walk.anim.ron",
+                ),
+            },
         ),
         (
             name: "Make Rotation",
-            ty: "bevy_animation_graph::nodes::arithmetic::vec3::rotation_arc::RotationArcNode",
-            inner: (),
+            inner: {
+                "bevy_animation_graph::nodes::arithmetic::vec3::rotation_arc::RotationArcNode": (),
+            },
         ),
     ],
     edges_inverted: {
