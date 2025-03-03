@@ -7,6 +7,8 @@ use bevy::prelude::*;
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::f32"]
+#[type_name = "Clamp"]
 pub struct ClampF32;
 
 impl ClampF32 {

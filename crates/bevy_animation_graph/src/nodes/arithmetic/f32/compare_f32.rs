@@ -18,6 +18,8 @@ pub enum CompareOp {
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::f32"]
+#[type_name = "Compare"]
 pub struct CompareF32 {
     pub op: CompareOp,
 }

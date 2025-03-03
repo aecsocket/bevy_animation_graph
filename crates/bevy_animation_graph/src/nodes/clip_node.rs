@@ -18,6 +18,8 @@ use bevy::utils::Hashed;
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::pose"]
+#[type_name = "Clip"]
 pub struct ClipNode {
     pub(crate) clip: Handle<GraphClip>,
     pub(crate) override_duration: Option<f32>,

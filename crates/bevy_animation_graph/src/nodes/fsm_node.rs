@@ -10,6 +10,8 @@ use bevy::prelude::*;
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::graph"]
+#[type_name = "Fsm"]
 pub struct FSMNode {
     pub fsm: Handle<StateMachine>,
 }

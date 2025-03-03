@@ -8,6 +8,8 @@ use bevy::reflect::Reflect;
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::pose"]
+#[type_name = "ChangeSpeed"]
 pub struct SpeedNode;
 
 impl SpeedNode {
