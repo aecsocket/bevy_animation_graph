@@ -17,9 +17,12 @@ use super::{
 };
 use crate::nodes::blend_space_node::BlendSpaceNode;
 use crate::nodes::{
-    AbsF32, AddF32, BlendMode, BlendNode, BlendSyncMode, ChainNode, ClampF32, ClipNode, CompareF32,
-    DivF32, DummyNode, FSMNode, FireEventNode, FlipLRNode, GraphNode, LoopNode, MulF32,
-    PaddingNode, RotationArcNode, RotationNode, SpeedNode, SubF32, TwoBoneIKNode,
+    AbsF32, AddF32, BlendMode, BlendNode, BlendSyncMode, BuildVec3Node, ChainNode, ClampF32,
+    ClipNode, CompareF32, ConstEntityPath, ConstF32, ConstVec3Node, DecomposeVec3Node, DivF32,
+    DummyNode, FSMNode, FireEventNode, FlipLRNode, FromEulerNode, GraphNode, IntoEulerNode,
+    InvertQuatNode, LengthVec3Node, LerpVec3Node, LoopNode, MulF32, MulQuatNode, NormalizeVec3Node,
+    PaddingNode, RotationArcNode, RotationNode, SelectF32, SlerpQuatNode, SpeedNode, SubF32,
+    TwoBoneIKNode,
 };
 use crate::prelude::{
     config::{FlipConfig, FlipNameMapper, PatternMapper, PatternMapperSerial},
@@ -130,6 +133,42 @@ impl AnimationGraphPlugin {
             .register_type::<BlendSyncMode>()
             .register_type::<GlobalTransition>()
             .register_type::<()>()
-            .register_type_data::<(), ReflectDefault>();
+            .register_type_data::<(), ReflectDefault>()
+        // --- Node registrations
+        // ------------------------------------------
+            .register_type::<ClipNode>()
+            .register_type::<DummyNode>()
+            .register_type::<ChainNode>()
+            .register_type::<BlendNode>()
+            .register_type::<BlendSpaceNode>()
+            .register_type::<FlipLRNode>()
+            .register_type::<GraphNode>()
+            .register_type::<LoopNode>()
+            .register_type::<PaddingNode>()
+            .register_type::<RotationNode>()
+            .register_type::<SpeedNode>()
+            .register_type::<TwoBoneIKNode>()
+            .register_type::<AbsF32>()
+            .register_type::<AddF32>()
+            .register_type::<ClampF32>()
+            .register_type::<DivF32>()
+            .register_type::<MulF32>()
+            .register_type::<SubF32>()
+            .register_type::<CompareF32>()
+            .register_type::<FireEventNode>()
+            .register_type::<RotationArcNode>()
+            .register_type::<FSMNode>()
+            .register_type::<(
+                (AbsF32, AddF32, ClampF32, CompareF32, ConstF32, DivF32, MulF32, SelectF32, SubF32),
+                (FromEulerNode, IntoEulerNode, InvertQuatNode, MulQuatNode, SlerpQuatNode),
+                (ConstVec3Node, BuildVec3Node, DecomposeVec3Node, LengthVec3Node, LerpVec3Node, NormalizeVec3Node, RotationArcNode),
+                ConstEntityPath,
+            )>()
+            // .register_type::<ExtendSkeleton>()
+            // .register_type::<IntoBoneSpaceNode>()
+            // .register_type::<IntoGlobalSpaceNode>()
+            // .register_type::<IntoCharacterSpaceNode>()
+        // ------------------------------------------
+        ;
     }
 }

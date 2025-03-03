@@ -9,15 +9,13 @@ use bevy::prelude::*;
 #[reflect(Default, NodeLike)]
 #[type_path = "bevy_animation_graph::node::vec3"]
 #[type_name = "Const"]
-pub struct ConstVec3Node {
-    pub constant: Vec3,
-}
+pub struct ConstVec3Node(pub Vec3);
 
 impl ConstVec3Node {
     pub const OUTPUT: &'static str = "out";
 
     pub fn new(constant: Vec3) -> Self {
-        Self { constant }
+        Self(constant)
     }
 }
 
@@ -27,7 +25,7 @@ impl NodeLike for ConstVec3Node {
     }
 
     fn update(&self, mut ctx: PassContext) -> Result<(), GraphError> {
-        ctx.set_data_fwd(Self::OUTPUT, self.constant);
+        ctx.set_data_fwd(Self::OUTPUT, self.0);
         Ok(())
     }
 
