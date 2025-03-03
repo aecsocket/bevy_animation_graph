@@ -7,6 +7,8 @@ use bevy::prelude::*;
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::vec3"]
+#[type_name = "IntoXyz"]
 pub struct DecomposeVec3Node;
 
 impl DecomposeVec3Node {

@@ -7,6 +7,8 @@ use bevy::prelude::*;
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::quat"]
+#[type_name = "IntoEuler"]
 pub struct IntoEulerNode {
     pub mode: EulerRot,
 }

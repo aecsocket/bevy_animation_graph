@@ -7,6 +7,8 @@ use bevy::prelude::*;
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::vec3"]
+#[type_name = "Normalize"]
 pub struct NormalizeVec3Node;
 
 impl NormalizeVec3Node {

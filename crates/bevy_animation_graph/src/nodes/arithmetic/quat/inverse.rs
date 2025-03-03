@@ -7,6 +7,8 @@ use bevy::prelude::*;
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::quat"]
+#[type_name = "Invert"]
 pub struct InvertQuatNode;
 
 impl InvertQuatNode {

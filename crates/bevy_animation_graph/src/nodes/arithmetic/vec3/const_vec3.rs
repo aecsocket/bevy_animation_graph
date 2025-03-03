@@ -7,6 +7,8 @@ use bevy::prelude::*;
 
 #[derive(Reflect, Clone, Debug, Default)]
 #[reflect(Default, NodeLike)]
+#[type_path = "bevy_animation_graph::node::vec3"]
+#[type_name = "Const"]
 pub struct ConstVec3Node {
     pub constant: Vec3,
 }
