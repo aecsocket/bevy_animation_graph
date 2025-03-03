@@ -9,15 +9,13 @@ use bevy::prelude::*;
 #[reflect(Default, NodeLike)]
 #[type_path = "bevy_animation_graph::node::f32"]
 #[type_name = "Const"]
-pub struct ConstF32 {
-    pub constant: f32,
-}
+pub struct ConstF32(pub f32);
 
 impl ConstF32 {
     pub const OUTPUT: &'static str = "out";
 
     pub fn new(constant: f32) -> Self {
-        Self { constant }
+        Self(constant)
     }
 }
 
@@ -27,7 +25,7 @@ impl NodeLike for ConstF32 {
     }
 
     fn update(&self, mut ctx: PassContext) -> Result<(), GraphError> {
-        ctx.set_data_fwd(Self::OUTPUT, self.constant);
+        ctx.set_data_fwd(Self::OUTPUT, self.0);
         Ok(())
     }
 

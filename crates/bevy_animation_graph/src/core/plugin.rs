@@ -17,9 +17,12 @@ use super::{
 };
 use crate::nodes::blend_space_node::BlendSpaceNode;
 use crate::nodes::{
-    AbsF32, AddF32, BlendMode, BlendNode, BlendSyncMode, ChainNode, ClampF32, ClipNode, CompareF32,
-    DivF32, DummyNode, FSMNode, FireEventNode, FlipLRNode, GraphNode, LoopNode, MulF32,
-    PaddingNode, RotationArcNode, RotationNode, SpeedNode, SubF32, TwoBoneIKNode,
+    AbsF32, AddF32, BlendMode, BlendNode, BlendSyncMode, BuildVec3Node, ChainNode, ClampF32,
+    ClipNode, CompareF32, ConstEntityPath, ConstF32, ConstVec3Node, DecomposeVec3Node, DivF32,
+    DummyNode, FSMNode, FireEventNode, FlipLRNode, FromEulerNode, GraphNode, IntoEulerNode,
+    InvertQuatNode, LengthVec3Node, LerpVec3Node, LoopNode, MulF32, MulQuatNode, NormalizeVec3Node,
+    PaddingNode, RotationArcNode, RotationNode, SelectF32, SlerpQuatNode, SpeedNode, SubF32,
+    TwoBoneIKNode,
 };
 use crate::prelude::{
     config::{FlipConfig, FlipNameMapper, PatternMapper, PatternMapperSerial},
@@ -120,6 +123,12 @@ impl AnimationGraphPlugin {
             .register_type::<FireEventNode>()
             .register_type::<RotationArcNode>()
             .register_type::<FSMNode>()
+            .register_type::<(
+                (AbsF32, AddF32, ClampF32, CompareF32, ConstF32, DivF32, MulF32, SelectF32, SubF32),
+                (FromEulerNode, IntoEulerNode, InvertQuatNode, MulQuatNode, SlerpQuatNode),
+                (ConstVec3Node, BuildVec3Node, DecomposeVec3Node, LengthVec3Node, LerpVec3Node, NormalizeVec3Node, RotationArcNode),
+                ConstEntityPath,
+            )>()
             // .register_type::<ExtendSkeleton>()
             // .register_type::<IntoBoneSpaceNode>()
             // .register_type::<IntoGlobalSpaceNode>()
