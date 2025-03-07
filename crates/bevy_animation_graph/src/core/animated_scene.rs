@@ -13,7 +13,7 @@ use bevy::{
 };
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 struct AnimatedSceneSerial {
     source: String,
     path_to_player: Vec<String>,
@@ -21,7 +21,7 @@ struct AnimatedSceneSerial {
     skeleton: String,
 }
 
-#[derive(Clone, Asset, Reflect)]
+#[derive(Debug, Clone, Default, Asset, Reflect)]
 #[reflect(Asset)]
 pub struct AnimatedScene {
     pub(crate) source: Handle<Scene>,
@@ -30,19 +30,19 @@ pub struct AnimatedScene {
     pub(crate) skeleton: Handle<Skeleton>,
 }
 
-#[derive(Component)]
+#[derive(Debug, Clone, Component)]
 pub struct AnimatedSceneInstance {
     pub player_entity: Entity,
 }
 
-#[derive(Component, Default)]
+#[derive(Debug, Clone, Component, Default)]
 #[require(Transform, Visibility)]
 pub struct AnimatedSceneHandle(pub Handle<AnimatedScene>);
 
-#[derive(Component)]
+#[derive(Debug, Clone, Component)]
 pub struct AnimatedSceneFailed;
 
-#[derive(Default)]
+#[derive(Debug, Clone, Default)]
 pub struct AnimatedSceneLoader;
 
 impl AssetLoader for AnimatedSceneLoader {
