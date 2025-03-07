@@ -14,7 +14,7 @@ use bevy::{
     utils::HashMap,
 };
 
-#[derive(Clone, Asset, Reflect)]
+#[derive(Debug, Clone, Asset, Reflect)]
 #[reflect(Asset)]
 pub struct AnimatedScene {
     pub(crate) source: Handle<Scene>,
@@ -40,7 +40,7 @@ pub struct Retargeting {
     bone_path_overrides: HashMap<String, String>,
 }
 
-#[derive(Component)]
+#[derive(Debug, Component)]
 pub struct AnimatedSceneInstance {
     player_entity: Entity,
 }
@@ -51,7 +51,7 @@ impl AnimatedSceneInstance {
     }
 }
 
-#[derive(Component, Default)]
+#[derive(Debug, Component, Default)]
 #[require(Transform, Visibility)]
 pub struct AnimatedSceneHandle(pub Handle<AnimatedScene>);
 

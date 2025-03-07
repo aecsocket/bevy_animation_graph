@@ -12,7 +12,7 @@ use crate::{
 
 use super::{AnimatedScene, Retargeting};
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 struct AnimatedSceneSerial {
     source: AssetPath<'static>,
     animation_graph: AssetPath<'static>,
