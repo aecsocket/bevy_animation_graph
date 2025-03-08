@@ -31,6 +31,11 @@ impl NodeLike for ClampF32 {
         let input = ctx.data_back(Self::INPUT)?.as_f32().unwrap();
         let min = ctx.data_back(Self::CLAMP_MIN)?.as_f32().unwrap();
         let max = ctx.data_back(Self::CLAMP_MAX)?.as_f32().unwrap();
+
+        // avoid a panic in `clamp`
+        let min = min.min(max);
+        let max = min.max(max);
+
         ctx.set_data_fwd(Self::OUTPUT, input.clamp(min, max));
         Ok(())
     }
