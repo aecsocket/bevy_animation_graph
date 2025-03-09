@@ -74,8 +74,8 @@ impl EditorWindowExtension for FsmEditorWindow {
                         .and_then(|(id, ca)| ca.get_context(*id))
                         .and_then(|ctx| {
                             let graph_id = ctx.get_graph_id();
-                            let graph = graph_assets.get(graph_id).unwrap();
-                            let node_id = graph.contains_state_machine(fsm_selection.fsm).unwrap();
+                            let graph = graph_assets.get(graph_id)?;
+                            let node_id = graph.contains_state_machine(fsm_selection.fsm)?;
                             ctx.caches
                                 .get_primary(|c| c.get_fsm_state(&node_id).cloned())
                         });
