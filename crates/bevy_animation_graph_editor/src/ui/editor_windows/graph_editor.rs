@@ -78,7 +78,8 @@ impl EditorWindowExtension for GraphEditorWindow {
                         &graph_selection.graph_indices,
                         spec_context,
                         maybe_graph_context,
-                    );
+                    )
+                    .expect("failed to create graph repr spec");
 
                     graph_selection
                         .nodes_context
