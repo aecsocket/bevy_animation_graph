@@ -4,6 +4,7 @@ use bevy_animation_graph::core::{
     animation_graph::{serial::AnimationGraphSerializer, AnimationGraph},
     state_machine::high_level::{serial::StateMachineSerial, StateMachine},
 };
+use egui_notify::Toast;
 use std::path::PathBuf;
 
 pub struct AssetSavingPlugin;
@@ -71,7 +72,16 @@ pub fn save_fsm_system(
 ) {
     for ev in evr_save_graph.read() {
         let fsm = graph_assets.get(ev.fsm).unwrap();
-        let graph_serial = StateMachineSerial::from(fsm);
+        let graph_serial = match StateMachineSerial::try_from(fsm) {
+            Ok(serial) => serial,
+            Err(err) => {
+                let text = format!("Failed to save FSM {:?}: {err:?}", ev.fsm);
+                ui_state.notifications.add(Toast::error(&text));
+                warn!("{text}");
+                continue;
+            }
+        };
+
         let mut final_path = cli.asset_source.clone();
         final_path.push(&ev.virtual_path);
         info!("Saving FSM with id {:?} to {:?}", ev.fsm, final_path);
