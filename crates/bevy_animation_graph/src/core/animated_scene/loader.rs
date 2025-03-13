@@ -21,7 +21,7 @@ struct AnimatedSceneSerial {
     retargeting: Option<RetargetingSerial>,
 }
 
-#[derive(Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct RetargetingSerial {
     source_skeleton: AssetPath<'static>,
     bone_path_overrides: HashMap<String, String>,

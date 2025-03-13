@@ -29,7 +29,7 @@ pub struct AnimatedScene {
 }
 
 /// Configuration needed to apply animation retargeting
-#[derive(Clone, Reflect)]
+#[derive(Debug, Clone, Reflect)]
 pub struct Retargeting {
     /// *Actual* skeleton of the source scene.
     source_skeleton: Handle<Skeleton>,
